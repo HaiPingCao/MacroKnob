@@ -1863,6 +1863,12 @@
 		(uuid "6141b611-a916-4f61-a147-1a2292f8f6a2")
 	)
 	(junction
+		(at 63.5 86.36)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6770af7c-6aad-48e7-af94-5a9e3f425708")
+	)
+	(junction
 		(at 224.79 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1891,12 +1897,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d89d9dd3-f946-4ed8-a2e6-b66ec4a81ba2")
-	)
-	(junction
-		(at 64.77 86.36)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dca08d8c-5a8b-4d67-97a9-ab221b5124b4")
 	)
 	(junction
 		(at 50.8 83.82)
@@ -1942,7 +1942,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 86.36) (xy 64.77 83.82)
+			(xy 63.5 86.36) (xy 63.5 83.82)
 		)
 		(stroke
 			(width 0)
@@ -1982,7 +1982,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 88.9) (xy 57.15 88.9)
+			(xy 53.34 88.9) (xy 55.88 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2142,16 +2142,6 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 86.36) (xy 64.77 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ccb2baa-3941-4c82-8a64-96c26b318d8b")
-	)
-	(wire
-		(pts
 			(xy 143.51 76.2) (xy 143.51 87.63)
 		)
 		(stroke
@@ -2252,7 +2242,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 86.36) (xy 64.77 88.9)
+			(xy 63.5 86.36) (xy 63.5 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2329,6 +2319,16 @@
 			(type default)
 		)
 		(uuid "c4838eca-70b9-45f3-b5cc-e5e71ea21460")
+	)
+	(wire
+		(pts
+			(xy 63.5 86.36) (xy 68.58 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6013ffa-e886-4052-9db6-09175538773e")
 	)
 	(wire
 		(pts
@@ -2442,7 +2442,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 83.82) (xy 57.15 83.82)
+			(xy 50.8 83.82) (xy 55.88 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3686,7 +3686,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 60.96 88.9 270)
+		(at 59.69 88.9 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3694,7 +3694,7 @@
 		(dnp no)
 		(uuid "c10cbef9-f3af-4182-8f24-3bee76fa107d")
 		(property "Reference" "R9"
-			(at 60.96 88.9 90)
+			(at 59.69 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3702,7 +3702,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 60.96 91.186 90)
+			(at 59.69 91.186 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3710,7 +3710,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal"
-			(at 60.96 87.122 90)
+			(at 59.69 87.122 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3719,7 +3719,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 60.96 88.9 0)
+			(at 59.69 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3728,7 +3728,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 60.96 88.9 0)
+			(at 59.69 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3903,7 +3903,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x04_Socket"
+		(property "Value" "I2C"
 			(at 92.71 74.9299 0)
 			(effects
 				(font
@@ -4029,7 +4029,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 60.96 83.82 270)
+		(at 59.69 83.82 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4037,7 +4037,7 @@
 		(dnp no)
 		(uuid "f5d0fd56-0826-4cb0-8704-3b03d8431162")
 		(property "Reference" "R8"
-			(at 60.96 83.82 90)
+			(at 59.69 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4045,7 +4045,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 60.96 86.106 90)
+			(at 59.69 86.106 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4053,7 +4053,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal"
-			(at 60.96 82.042 90)
+			(at 59.69 82.042 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4062,7 +4062,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 60.96 83.82 0)
+			(at 59.69 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4071,7 +4071,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 60.96 83.82 0)
+			(at 59.69 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
