@@ -1,15 +1,22 @@
-use std::io::Write;
+// use std::io::Write;
 use std::thread;
 use std::time::Duration;
 
+use serialport::SerialPort;
+
 mod arduino;
+mod utils;
+
+#[cfg(target_os = "linux")]
 mod linux;
+
+#[cfg(target_os = "windows")]
 mod windows;
 
 fn main() {
     let arduino_port = match arduino::find() {
         Some(port) => port,
-        _none => {
+        None => {
             eprintln!("Arduino not found!");
             return;
         }
@@ -21,28 +28,36 @@ fn main() {
         .expect("Failed to open port");
 
     port.write_data_terminal_ready(false).ok();
+
     println!("Connected to Arduino on {}", arduino_port);
+
     thread::sleep(Duration::from_millis(500));
 
-    let mut last_volume = 0;
+    run(port);
+}
+
+#[cfg(target_os = "windows")]
+fn run(mut port: Box<dyn SerialPort>) {
+    let mut last_volume = 255;
     let mut last_muted = false;
 
     loop {
-        match linux::get_volume() {
+        match windows::get_volume() {
             Ok((current_volume, is_muted)) => {
-                // Check if either volume or mute status changed
                 if current_volume != last_volume || is_muted != last_muted {
-                    // Send volume as 0 if muted, otherwise actual volume
-                    let volume_to_send = if is_muted { 0 } else { current_volume };
+                    let data = [current_volume, if is_muted { 1 } else { 0 }];
 
-                    match port.write_all(&[volume_to_send]) {
+                    match port.write_all(&data) {
                         Ok(_) => {
                             port.flush().ok();
-                            if is_muted {
-                                println!("Muted (Volume: {}%)", current_volume);
-                            } else {
-                                println!("Volume changed: {}%", current_volume);
-                            }
+                            println!(
+                                "{}",
+                                if is_muted {
+                                    format!("Muted (Volume: {}%)", current_volume)
+                                } else {
+                                    format!("Volume: {}%", current_volume)
+                                }
+                            );
                             last_volume = current_volume;
                             last_muted = is_muted;
                         }
@@ -53,9 +68,46 @@ fn main() {
                     }
                 }
             }
-            Err(e) => {
-                eprintln!("Failed to get volume: {}", e);
+            Err(e) => eprintln!("Failed to get volume: {}", e),
+        }
+
+        thread::sleep(Duration::from_millis(100));
+    }
+}
+
+#[cfg(target_os = "linux")]
+fn run(mut port: Box<dyn SerialPort>) {
+    let mut last_volume = 255;
+    let mut last_muted = false;
+
+    loop {
+        match linux::get_volume() {
+            Ok((current_volume, is_muted)) => {
+                if current_volume != last_volume || is_muted != last_muted {
+                    let data = [current_volume, if is_muted { 1 } else { 0 }];
+
+                    match port.write_all(&data) {
+                        Ok(_) => {
+                            port.flush().ok();
+                            println!(
+                                "{}",
+                                if is_muted {
+                                    format!("Muted (Volume: {}%)", current_volume)
+                                } else {
+                                    format!("Volume: {}%", current_volume)
+                                }
+                            );
+                            last_volume = current_volume;
+                            last_muted = is_muted;
+                        }
+                        Err(e) => {
+                            eprintln!("Failed to send: {}", e);
+                            thread::sleep(Duration::from_millis(500));
+                        }
+                    }
+                }
             }
+            Err(e) => eprintln!("Failed to get volume: {}", e),
         }
 
         thread::sleep(Duration::from_millis(100));
