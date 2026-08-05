@@ -3,6 +3,8 @@
 ControlDeck is a simple, multi-purpose, programmable volume knob built with an Arduino Pro Micro.  
 It is designed as a compact hardware control interface for volume adjustment, mode switching, and custom hotkeys.
 
+![This is my build](image/cd_img1.png)
+
 ## Hardware
 
 The project uses the following components:

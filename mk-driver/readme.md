@@ -1,10 +1,12 @@
 # MK Driver (a.k.a macro knob driver)
 
-A cross-platform volume monitor that sends real-time audio volume data to Arduino via serial port.
+## ⚠ I postponed the development of this driver due to a lack of time, and I am already satisfied with the current build.
+
+A volume monitor that sends real-time audio volume data to Arduino via serial port.
 
 ## Features
 
-- Monitors system volume in real-time (Windows & Linux)
+- Monitors system volume in real-time
 - Sends volume data to Arduino via serial connection
 - Auto-detects Arduino port
 
